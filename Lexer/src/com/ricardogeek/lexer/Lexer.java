@@ -20,11 +20,10 @@ public class Lexer {
     private static ArrayList<Token> lex(String input) {
         final ArrayList<Token> tokens = new ArrayList<Token>();
         final StringTokenizer st = new StringTokenizer(input);
-        boolean matched = false;
 
         while(st.hasMoreTokens()) {
             String palabra = st.nextToken();
-            matched = false;
+            boolean matched = false;
 
             for (Tipos tokenTipo : Tipos.values()) {
                 Pattern patron = Pattern.compile(tokenTipo.patron);
@@ -37,10 +36,10 @@ public class Lexer {
                     matched = true;
                 }
             }
-        }
 
-        if(!matched) {
-            throw new RuntimeException("Se encontró un token invalido.");
+            if (!matched) {
+                throw new RuntimeException("Se encontró un token invalido.");
+            }
         }
 
         return tokens;
